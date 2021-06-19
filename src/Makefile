@@ -11,7 +11,7 @@ ASMFLAGS := -f elf32
 CFLAGS   := -c -Os -std=c99 -m32 -Wall -Wextra -Werror -fno-pie -fno-stack-protector -fomit-frame-pointer -fno-builtin -fno-common -ffreestanding
 LDFLAGS  := -s -static -T layout.ld -n -m elf_i386
 
-.PHONY: all clean run # docker docker-image
+.PHONY: all clean run
 
 all: clean run
 
@@ -27,9 +27,3 @@ $(TARGET): $(OBJS)
 	$(ASM) $(ASMFLAGS) -o $@ $<
 %.o: %.c *.h
 	$(CC) $(CFLAGS) -o $@ $<
-
-# docker: docker-image
-# 	docker run --rm -it --name hello-os-emu hello-os-emu
-
-# docker-image: Dockerfile
-# 	docker build -t hello-os-emu .
