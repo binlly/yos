@@ -1,0 +1,2 @@
+# yos
+a simple os
